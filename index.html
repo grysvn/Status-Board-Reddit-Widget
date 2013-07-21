@@ -93,6 +93,7 @@
 			    -moz-border-radius: 8px;
 			    -khtml-border-radius: 8px;  
 			    border-radius: 8px;
+			    max-width: 245px; /*so the picture doesn't overflow the container and there is still a little padding*/
 			    width: auto;
 			    height: 120px;
 			    overflow: hidden;
@@ -115,7 +116,8 @@
 			    		var json=req.responseText.split("<!-- Hosting24 Analytics Code -->")[0]; //needed because of free hosting bullshit
 			    		var obj=JSON.parse(json);
 			    		var imgUrl=(obj.data.children[0].data.url);
-			    		var imgRedditUrl=(obj.data.children[0].data.permalink); //in the format of /r/pics/... needs reddit.com
+			    		var imgRedditUrl=(obj.data.children[0].data.permalink); //in the format of /r/pics/... needs reddit.com - also not currently used
+			    		//tweeted to panic that they should add tapping to open in safari, so hopefully this will be useful in the future
 			    		var imgTitle=(obj.data.children[0].data.title);
 			    		imgTitle.length <= 120 ? imgTitle : imgTitle.substring(0,120)+'...'; //sets a limit to the character length
 			    		document.getElementById("mainContainer").innerHTML='<h2>Top picture on /r/pics</h2><img class="image" src="'+imgUrl+'" /><p>'+imgTitle+'</p>';
