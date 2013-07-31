@@ -2,141 +2,14 @@
 <html>
 	<head>
 		<title>Statusboard Test Widget</title>
-		<style type="text/css">
-			/*This style was modified from panic.com/statusboard/modules/spacepeople/index.html*/
-			@font-face
-			{
-				font-family: "Roadgeek2005SeriesD";
-				src: url("http://panic.com/fonts/Roadgeek 2005 Series D/Roadgeek 2005 Series D.otf");
-			}
-			
-			body, *
-			{
-			
-			}
-			body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td
-			{ 
-				margin: 0;
-				padding: 0;
-			}
-				
-			fieldset,img
-			{ 
-				border: 0;
-			}
-			
-				
-			/* Settin' up the page */
-			
-			html, body, #main
-			{
-				overflow: hidden; /* */
-			}
-			
-			body
-			{
-				color: white;
-				font-family: 'Roadgeek2005SeriesD', sans-serif;
-				font-size: 20px;
-				line-height: 24px;
-			}
-			p
-			{
-				color:#7e7e7e;
-				width: 220px;
-				font-size: 13px;
-				margin: 0px auto;
-			}
-			body, html, #main
-			{
-				background: transparent !important;
-			}
-			
-			#mainContainer
-			{
-				width: 250px;
-				height: 250px;
-				text-align: center;
-				
-			}
-			#mainContainer *
-			{
-				font-weight: normal;
-			}
-			
-			h1
-			{
-				font-size: 120px;
-				line-height: 120px;
-				margin-top: 15px;
-				margin-bottom: 28px;
-				color: white;
-				text-shadow:0px -2px 0px black;
-				text-transform: uppercase;
-			}
-			
-			h2
-			{
-				width: 180px;
-				margin: 0px auto;
-				padding-top: 20px;
-				font-size: 16px;
-				line-height: 18px;
-				color: #7e7e7e;
-				text-transform: uppercase;
-				padding-bottom: 5px;
-			}
-			.image 
-			{
-			    margin: 0px auto;
-			     -webkit-border-radius: 8px;
-			    -moz-border-radius: 8px;
-			    -khtml-border-radius: 8px;  
-			    border-radius: 8px;
-			    max-width: 245px; /*so the picture doesn't overflow the container and there is still a little padding*/
-			    width: auto;
-			    height: 120px;
-			    overflow: hidden;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="script.js"></script>
 	</head>
 	<body onLoad="init()">
 		<div id="main">
 			<div id="mainContainer">
 			</div>
 		</div>
-		<script type="text/javascript">
-			function refresh()
-			{
-			    var req = new XMLHttpRequest();
-		   	 	console.log("Refreshing Count...");
-		        req.onreadystatechange=function() {
-					if (req.readyState==4 && req.status==200) {
-			    		var json=req.responseText.split("<!-- Hosting24 Analytics Code -->")[0]; //needed because of free hosting bullshit
-			    		var obj=JSON.parse(json);
-			    		var imgUrl=(obj.data.children[0].data.url);
-			    		var imgRedditUrl=(obj.data.children[0].data.permalink); //in the format of /r/pics/... needs reddit.com - also not currently used
-			    		//tweeted to panic that they should add tapping to open in safari, so hopefully this will be useful in the future
-			    		var imgTitle=(obj.data.children[0].data.title);
-			    		imgTitle.length <= 120 ? imgTitle : imgTitle.substring(0,120)+'...'; //sets a limit to the character length
-			    		document.getElementById("mainContainer").innerHTML='<h2>Top picture on /r/pics</h2><img class="image" src="'+imgUrl+'" /><p>'+imgTitle+'</p>';
-		          	}
-		        }
-			    req.open("GET", 'get.php', true);
-			    req.send(null);
-			}
-
-			function init()
-			{
-				// Change page background to black if the URL contains "?desktop", for debugging while developing on your computer
-				if (document.location.href.indexOf('desktop') > -1)
-				{
-					document.getElementById('mainContainer').style.backgroundColor = 'black';
-				}
-				refresh();
-				var int=self.setInterval(function(){refresh()},600000);
-			}
-		</script>
 	</body>
 </html>
