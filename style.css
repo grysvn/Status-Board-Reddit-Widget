@@ -34,6 +34,7 @@ body
 	font-family: 'Roadgeek2005SeriesD', sans-serif;
 	font-size: 20px;
 	line-height: 24px;
+	overflow: visible;
 }
 p
 {
