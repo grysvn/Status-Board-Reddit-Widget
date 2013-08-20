@@ -6,7 +6,7 @@ function refresh()
  	var subreddit = url.parameters.subreddit;
     req.onreadystatechange=function() {
 		if (req.readyState==4 && req.status==200) {
-    		var json=req.responseText.split("<!-- Hosting24 Analytics Code -->")[0]; //needed because of free hosting bullshit
+    		//var json=req.responseText.split("<!-- Hosting24 Analytics Code -->")[0]; //needed because of free hosting bullshit
     		var obj=JSON.parse(json);
     		var childrenArray = obj.data.children;
     		var imgRedditUrl = "";
